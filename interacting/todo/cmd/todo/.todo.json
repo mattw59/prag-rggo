@@ -1,1 +1,1 @@
-[{"Task":"Add this to do item to the list","Done":false,"CreatedAt":"2022-04-22T17:45:30.197226087-04:00","CompletedAt":"0001-01-01T00:00:00Z"}]
+[{"Task":"IncludingitemfromArgs","Done":false,"CreatedAt":"2022-04-24T14:11:27.223441834-04:00","CompletedAt":"0001-01-01T00:00:00Z"},{"Task":"Including item from Args","Done":false,"CreatedAt":"2022-04-24T14:11:47.631506182-04:00","CompletedAt":"0001-01-01T00:00:00Z"},{"Task":"This item is from STDIN","Done":false,"CreatedAt":"2022-04-24T14:12:10.943612916-04:00","CompletedAt":"0001-01-01T00:00:00Z"}]
