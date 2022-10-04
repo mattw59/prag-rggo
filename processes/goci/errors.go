@@ -7,11 +7,12 @@ import (
 
 var (
 	ErrValidation = errors.New("Validation failed")
+  ErrSignal = error.new("Received signal")
 )
 
 type stepErr struct {
-	step string
-	msg string
+	step  string
+	msg   string
 	cause error
 }
 

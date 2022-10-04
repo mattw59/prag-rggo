@@ -5,20 +5,20 @@ import (
 )
 
 type step struct {
-	name string
-	exe string
-	args []string
+	name    string
+	exe     string
+	args    []string
 	message string
-	proj string
+	proj    string
 }
 
 func newStep(name, exe, message, proj string, args []string) step {
-	return step {
-		name: name,
-		exe: exe,
+	return step{
+		name:    name,
+		exe:     exe,
 		message: message,
-		args: args,
-		proj: proj,
+		args:    args,
+		proj:    proj,
 	}
 }
 
@@ -27,8 +27,8 @@ func (s step) execute() (string, error) {
 	cmd.Dir = s.proj
 	if err := cmd.Run(); err != nil {
 		return "", &stepErr{
-			step: s.name,
-			msg: "failed to execute",
+			step:  s.name,
+			msg:   "failed to execute",
 			cause: err,
 		}
 	}

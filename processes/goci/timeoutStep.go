@@ -11,7 +11,7 @@ type timeoutStep struct {
 	timeout time.Duration
 }
 
-func newTimeoutStep(name, exe, message, proj string, args[] string, timeout time.Duration) timeoutStep {
+func newTimeoutStep(name, exe, message, proj string, args []string, timeout time.Duration) timeoutStep {
 	s := timeoutStep{}
 	s.step = newStep(name, exe, message, proj, args)
 	s.timeout = timeout
@@ -21,24 +21,26 @@ func newTimeoutStep(name, exe, message, proj string, args[] string, timeout time
 	return s
 }
 
+var command = exec.CommandContext
+
 func (s timeoutStep) execute() (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), s.timeout)
 	defer cancel()
 
-	cmd := exec.CommandContext(ctx, s.exe, s.args...)
+	cmd := command(ctx, s.exe, s.args...)
 	cmd.Dir = s.proj
 
 	if err := cmd.Run(); err != nil {
 		if ctx.Err() == context.DeadlineExceeded {
 			return "", &stepErr{
-				step: s.name,
-				msg: "failed time out",
+				step:  s.name,
+				msg:   "failed time out",
 				cause: context.DeadlineExceeded,
 			}
 		}
 		return "", &stepErr{
-			step: s.name,
-			msg: "failed to execute",
+			step:  s.name,
+			msg:   "failed to execute",
 			cause: err,
 		}
 	}
